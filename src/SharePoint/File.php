@@ -157,6 +157,25 @@ class File extends SecurableObject
         $data = $ctx->executeQueryDirect($options);
         return $data;
     }
+    
+
+    /**
+     * Opens the file and put to file
+     * @param ClientRuntimeContext $ctx
+     * @param $serverRelativeUrl
+     * @param $fp
+     * @return mixed|string
+     * @throws \Exception
+     */
+    public static function saveBinaryToFile(ClientRuntimeContext $ctx, $serverRelativeUrl, $fp)
+    {
+        $serverRelativeUrl = rawurlencode($serverRelativeUrl);
+        $url = $ctx->getServiceRootUrl() . "web/getfilebyserverrelativeurl('$serverRelativeUrl')/\$value";
+        $options = new RequestOptions($url);
+        $options->StreamHandle = $fp;
+        $data = $ctx->executeQueryDirect($options);
+        return $data;
+    }
 
     /**
      * Saves the file
