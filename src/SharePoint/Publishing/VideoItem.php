@@ -40,6 +40,41 @@ class VideoItem extends ClientObject
         $ctx->executeQueryDirect($request);
     }
 
+    public function startUpload($content, $GUID){
+        $ctx = $this->getContext();
+        $methodName = "GetFile()/StartUpload(uploadId=guid'".$GUID."')";
+        $requestUrl = $this->getResourceUrl() . "/" . $methodName;
+        $request = new RequestOptions($requestUrl);
+        $request->Method = HttpMethod::Post;
+        $request->Data = $content;
+        if($ctx instanceof ClientContext)
+            $ctx->ensureFormDigest($request);
+        $ctx->executeQueryDirect($request);
+    }
+
+    public function continueUpload($content, $GUID, $offset){
+        $ctx = $this->getContext();
+        $methodName = "GetFile()/ContinueUpload(uploadId=guid'".$GUID."',fileOffset='".$offset."')";
+        $requestUrl = $this->getResourceUrl() . "/" . $methodName;
+        $request = new RequestOptions($requestUrl);
+        $request->Method = HttpMethod::Post;
+        $request->Data = $content;
+        if($ctx instanceof ClientContext)
+            $ctx->ensureFormDigest($request);
+        $ctx->executeQueryDirect($request);
+    }
+
+    public function finishUpload($content, $GUID, $offset){
+        $ctx = $this->getContext();
+        $methodName = "GetFile()/FinishUpload(uploadId=guid'".$GUID."',fileOffset='".$offset."')";
+        $requestUrl = $this->getResourceUrl() . "/" . $methodName;
+        $request = new RequestOptions($requestUrl);
+        $request->Method = HttpMethod::Post;
+        $request->Data = $content;
+        if($ctx instanceof ClientContext)
+            $ctx->ensureFormDigest($request);
+        $ctx->executeQueryDirect($request);
+    }
 
     function setProperty($name, $value, $persistChanges = true)
     {
