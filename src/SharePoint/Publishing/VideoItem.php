@@ -76,6 +76,17 @@ class VideoItem extends ClientObject
         $ctx->executeQueryDirect($request);
     }
 
+    public function cancelUpload($GUID){
+        $ctx = $this->getContext();
+        $methodName = "GetFile()/CancelUpload(uploadId=guid'".$GUID."')";
+        $requestUrl = $this->getResourceUrl() . "/" . $methodName;
+        $request = new RequestOptions($requestUrl);
+        $request->Method = HttpMethod::Post;
+        if($ctx instanceof ClientContext)
+            $ctx->ensureFormDigest($request);
+        $ctx->executeQueryDirect($request);
+    }
+
     function setProperty($name, $value, $persistChanges = true)
     {
         if($name == "ID"){
