@@ -39,10 +39,12 @@ class VideoItem extends ClientObject
             $ctx->ensureFormDigest($request);
         $ctx->executeQueryDirect($request);
     }
-
-    public function startUpload($content, $GUID){
+    
+    public function startUpload($content, $guid = null){
         $ctx = $this->getContext();
-        $methodName = "GetFile()/StartUpload(uploadId=guid'".$GUID."')";
+        $guid = $guid == null ? $this->getProperty("ID") : $guid;
+        
+        $methodName = "GetFile()/StartUpload(uploadId=guid'$guid')";
         $requestUrl = $this->getResourceUrl() . "/" . $methodName;
         $request = new RequestOptions($requestUrl);
         $request->Method = HttpMethod::Post;
@@ -52,9 +54,11 @@ class VideoItem extends ClientObject
         $ctx->executeQueryDirect($request);
     }
 
-    public function continueUpload($content, $GUID, $offset){
+    public function continueUpload($content, $guid = null, $offset){
         $ctx = $this->getContext();
-        $methodName = "GetFile()/ContinueUpload(uploadId=guid'".$GUID."',fileOffset='".$offset."')";
+        $guid = $guid == null ? $this->getProperty("ID") : $guid;
+        
+        $methodName = "GetFile()/ContinueUpload(uploadId=guid'$guid',fileOffset=$offset)";
         $requestUrl = $this->getResourceUrl() . "/" . $methodName;
         $request = new RequestOptions($requestUrl);
         $request->Method = HttpMethod::Post;
@@ -64,9 +68,11 @@ class VideoItem extends ClientObject
         $ctx->executeQueryDirect($request);
     }
 
-    public function finishUpload($content, $GUID, $offset){
+    public function endChunk($content, $guid = null, $offset){
         $ctx = $this->getContext();
-        $methodName = "GetFile()/FinishUpload(uploadId=guid'".$GUID."',fileOffset='".$offset."')";
+        $guid = $guid == null ? $this->getProperty("ID") : $guid;
+       
+        $methodName = "GetFile()/FinishUpload(uploadId=guid'$guid',fileOffset=$offset)";
         $requestUrl = $this->getResourceUrl() . "/" . $methodName;
         $request = new RequestOptions($requestUrl);
         $request->Method = HttpMethod::Post;
