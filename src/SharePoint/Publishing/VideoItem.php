@@ -68,7 +68,7 @@ class VideoItem extends ClientObject
         $ctx->executeQueryDirect($request);
     }
 
-    public function endChunk($content, $guid = null, $offset){
+    public function finishUpload($content, $guid = null, $offset){
         $ctx = $this->getContext();
         $guid = $guid == null ? $this->getProperty("ID") : $guid;
        
