@@ -1,29 +1,19 @@
 {
-  "name": "jonathantanudjaja/php-spo",
-  "description": "Fork from vgrem/phpSPO",
-  "type": "library",
-  "keywords": [
-    "sharepoint",
-    "office365",
-    "rest",
-    "curl",
-    "api"
-  ],
-  "authors": [
-    {
-      "name": "Vadim Gremyachev",
-      "email": "vvgrem@gmail.com"
-    },
-    {
-      "name": "Jonathan Tanudjaja",
-      "email": "jonathantanudjaja@gmail.com"
-    }
-  ],
-  "license": "LGPL-3.0+",
-  "minimum-stability": "dev",
-  "require": {
-    "php": ">=5.4",
-    "ext-curl": "*"
+    "name": "appopcen/php-spo",
+    "description": "Fork from vgrem/php-spo",
+    "type": "library",
+    "keywords": ["sharepoint", "office365", "rest", "curl", "api"],
+    "authors": [
+        {
+            "name": "Vadim Gremyachev",
+            "email": "vvgrem@gmail.com"
+        }
+    ],
+    "license": "LGPL-3.0+",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4",
+        "ext-curl": "*"
   },
   "autoload": {
     "psr-4": {
